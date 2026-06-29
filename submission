@@ -1,0 +1,130 @@
+Q1 
+
+#!/bin/bash
+echo "Enter a number"
+read number
+if ((number%2==0))
+then 
+echo "Even "
+else 
+echo "odd "
+fi
+
+Q2
+#!/bin/bash
+echo "Enter a number"
+read n
+fac=1
+for ((i=1;i<=n;i++))
+do
+fac=$((fac*i))
+done
+echo "factorial = $fac"
+
+Q3
+#!/bin/bash
+echo "Enter number of terms"
+read n
+a=0
+a1=1
+for ((i=1;i<=n;i++))
+do
+echo -n "$a "
+a2=$((a+a1))
+a=$a1
+a1=$a2
+done
+echo
+
+Q4.
+#!/bin/bash
+echo "Enter a number"
+read n
+flag=0 # assuming number is prime
+for ((i=2;i<n;i++))
+do
+if ((n%i==0))
+then
+flag=1
+break
+fi
+done
+if ((n<=1))
+then
+echo "Not Prime"
+elif ((flag==0))
+then
+echo "Prime"
+else
+echo "Not Prime"
+fi
+
+Q5.
+#!/bin/bash
+echo "Enter first file"
+read f1
+echo "Enter second file"
+read f2
+if cmp -s "$f1" "$f2" # compare both files
+then
+echo "Files are same"
+rm "$f2"
+echo "$f2 deleted"
+else
+echo "Files are different"
+fi
+Q6.
+#!/bin/bash
+echo "Enter a number"
+read n
+temp=$n
+rev=0
+while ((n>0))
+do
+r=$((n%10)) # reversing
+rev=$((rev*10+r))
+n=$((n/10))
+done
+if ((temp==rev))
+then
+echo "Is Palindrome"
+else
+echo "Not Palindrome"
+fi
+
+Q7.#!/bin/bash
+echo "Enter a number"
+read n
+for ((i=1;i<=10;i++))
+do
+echo "$n x $i = $((n*i))"
+done
+
+Q8- shows error
+
+Q9.
+#!/bin/bash
+time=$(date +%Y%m%d_%H%M%S)
+file="report_$time.txt"
+echo "System Report" > $file
+echo "Date of report $(date)" >> $file
+echo "" >> $file
+echo "Uptime" >> $file
+uptime >> $file
+echo "" >> $file
+echo "Memory Usage" >> $file
+free -h >> $file
+echo "" >> $file
+echo "Disk Usage" >> $file
+df -h >> $file
+echo "" >> $file
+echo "Top Process" >> $file
+ps aux --sort=-%cpu | head -6 >> $file
+echo "report saved in $file"
+
+Q10. 
+#!/bin/bash
+echo "Enter the length of password"
+read n
+pass=$(tr -dc A-Za-z0-9 </dev/urandom | head -c $n)
+echo "Password : $pass"
